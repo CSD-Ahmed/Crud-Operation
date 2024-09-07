@@ -11,7 +11,7 @@ var form = document.getElementById("myForm"),
   expiryDate = document.getElementById("EXPDate"),
   submitBtn = document.querySelector(".submit"),
   productInfo = document.getElementById("data"),
-  modal = document.getElementById("prdouctForm"),
+  modal = document.getElementById("productForm"),
   modalTitle = document.querySelector("#productForm .modal-title"),
   newProductBtn = document.querySelector(".newUser");
 
@@ -29,7 +29,7 @@ function openForm() {
   form.reset();
   clearValidationErrors();
 }
-x;
+
 // Assuming this is called when you need to open the form
 showInfo();
 openForm();
@@ -237,11 +237,10 @@ function clearValidationErrors() {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault(); // Prevent default form submission behavior
-
+  alert("Please correct the errors and try again.");
   // Perform form validation
   if (!validateForm()) {
-    alert("Please correct the errors and try again.");
-    return false; // Stop the submission if validation fails
+    return true; // Stop the submission if validation fails
   }
 
   // Gather form data
@@ -279,4 +278,10 @@ form.addEventListener("submit", (e) => {
 
   // Refresh the displayed product list
   showInfo();
+  setTimeout(function () {
+    var modal = bootstrap.Modal.getInstance(
+      document.getElementById("productForm")
+    );
+    modal.hide();
+  }, 1000);
 });
